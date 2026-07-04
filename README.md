@@ -40,7 +40,35 @@ The system continuously monitors the output of a tilt switch. If the detected vi
 | Breadboard | 1 |
 
 ---
+## Hardware Prototype
 
+The prototype was built on a breadboard using an Arduino Uno, a tilt switch, and a piezo buzzer.
+
+<p align="center">
+  <img src="docs/hardware_view.jpg" width="550">
+</p>
+
+---
+
+## Circuit Diagram
+
+The following circuit shows the connection between the Arduino Uno, tilt sensor, resistor, and buzzer.
+
+<p align="center">
+  <img src="docs/circuit_diagram.png" width="650">
+</p>
+
+---
+
+## Block Diagram
+
+The overall workflow of the system is illustrated below.
+
+<p align="center">
+  <img src="docs/block_diagram.png" width="650">
+</p>
+
+---
 ## Working Principle
 
 1. Arduino continuously reads the tilt sensor.
