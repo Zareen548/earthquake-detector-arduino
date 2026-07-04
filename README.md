@@ -116,7 +116,14 @@ End Repeat
 - Analog Sensor Interface
 
 ---
+## Sensor Reading Visualization
 
+The figure below shows the expected behavior of the tilt sensor in normal and high-vibration conditions.
+
+![Tilt Sensor Readings](docs/tilt_sensor_readings.png)
+
+In normal condition, the sensor value changes only slightly and the buzzer remains OFF.  
+During high vibration, the change between consecutive readings exceeds the threshold for a sustained time, so the buzzer turns ON.
 ## Results
 
 The prototype successfully detected continuous vibration using the tilt sensor. During testing, the buzzer was activated whenever the vibration exceeded the configured threshold and remained active until the movement stopped.
