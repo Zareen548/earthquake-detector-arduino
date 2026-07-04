@@ -1,38 +1,40 @@
-const int sensorPin = A0;
-const int buzzerPin = 10;
+const int TILT_PIN = A0;
+const int BUZZER_PIN = 10;
 
-int threshold = 500;
-unsigned long vibrationStartTime = 0;
-unsigned long requiredDuration = 1000;
+const int VALUE_THRESHOLD = 5;
+const int TIME_THRESHOLD = 2;
+const int BUZZER_PWM = 100;
 
-bool vibrationDetected = false;
+int previousValue = 0;
+int vibrationCounter = 0;
 
 void setup() {
-  pinMode(sensorPin, INPUT);
-  pinMode(buzzerPin, OUTPUT);
-  Serial.begin(9600);
+  pinMode(BUZZER_PIN, OUTPUT);
+  analogWrite(BUZZER_PIN, 0);
 }
 
 void loop() {
-  int sensorValue = analogRead(sensorPin);
-  Serial.println(sensorValue);
 
-  if (sensorValue > threshold) {
-    if (!vibrationDetected) {
-      vibrationDetected = true;
-      vibrationStartTime = millis();
+  int currentValue = analogRead(TILT_PIN);
+
+  if (abs(currentValue - previousValue) >= VALUE_THRESHOLD) {
+
+    vibrationCounter++;
+
+    if (vibrationCounter >= TIME_THRESHOLD) {
+
+      analogWrite(BUZZER_PIN, BUZZER_PWM);
+
     }
 
-    if (millis() - vibrationStartTime >= requiredDuration) {
-      digitalWrite(buzzerPin, HIGH);
-      delay(2000);
-      digitalWrite(buzzerPin, LOW);
+  } else {
 
-      vibrationDetected = false;
-    }
-  } 
-  else {
-    digitalWrite(buzzerPin, LOW);
-    vibrationDetected = false;
+    vibrationCounter = 0;
+    analogWrite(BUZZER_PIN, 0);
+
   }
+
+  previousValue = currentValue;
+
+  delay(500);
 }
