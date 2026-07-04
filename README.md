@@ -1,33 +1,132 @@
-#earthquake-detector-arduino
+# Earthquake Detector using Arduino
 
-A microcontroller-based earthquake detector using a tilt/vibration sensing element, buzzer alarm, and threshold logic.
-# Earthquake Detector using Microcontroller
+A simple embedded system that detects earthquake-like vibrations using a tilt switch and an Arduino Uno. When continuous vibration exceeding a predefined threshold is detected, the system activates a buzzer to alert nearby users.
 
-This project is a simple earthquake detection system developed during my bachelor's studies. It uses a vibration/tilt sensing element to detect abnormal ground movement. When the sensed value exceeds a predefined threshold for a certain time, the system activates a buzzer alarm.
+> **Note**
+>
+> This project was developed during my Bachelor's degree as an introductory embedded systems project.
+
+---
+
+## Overview
+
+Earthquakes can cause severe damage with very little warning. The objective of this project is to design a low-cost prototype capable of detecting vibration using a tilt sensor and providing an immediate audible alarm.
+
+The system continuously monitors the output of a tilt switch. If the detected vibration exceeds a predefined threshold for a specified duration, the Arduino activates a buzzer until the vibration stops.
+
+---
 
 ## Features
-- Detects vibration or tilt changes
-- Uses analog input from sensor
-- Activates buzzer alarm
-- Simple threshold-based detection
-- Low-cost hardware implementation
 
-## Components
-- Microcontroller / Arduino
-- Tilt switch or vibration sensor
-- Buzzer
-- Resistors
-- Breadboard / PCB
-- Connecting wires
+- Arduino Uno based implementation
+- Tilt switch vibration sensing
+- Real-time monitoring
+- Threshold-based detection
+- Audible alarm using buzzer
+- Low-cost hardware
+- Easy to reproduce
+
+---
+
+## Hardware Components
+
+| Component | Quantity |
+|-----------|---------:|
+| Arduino Uno | 1 |
+| Tilt Switch Sensor | 1 |
+| Piezo Buzzer | 1 |
+| 1 kΩ Resistor | 1 |
+| Jumper Wires | 6 |
+| Breadboard | 1 |
+
+---
 
 ## Working Principle
-1. The sensor detects vibration or tilt.
-2. The microcontroller reads the sensor value from analog pin A0.
-3. If the value exceeds the threshold for a fixed time, the buzzer turns ON.
-4. After the alarm condition, the values are reset.
 
+1. Arduino continuously reads the tilt sensor.
+2. The current sensor value is compared with the previous reading.
+3. If the difference exceeds a predefined threshold, a vibration counter increases.
+4. Once the vibration persists long enough, the buzzer is activated.
+5. After the vibration stops, the system resets and continues monitoring.
+
+---
+
+## Algorithm
+
+```
+Start
+
+Initialize Arduino
+Initialize Tilt Sensor
+Initialize Buzzer
+
+Repeat forever
+
+    Read sensor value
+
+    Compare with previous value
+
+    IF vibration > threshold
+
+        Increase timer
+
+        IF timer exceeds limit
+
+            Activate buzzer
+
+        ENDIF
+
+    ELSE
+
+        Reset timer
+        Turn buzzer OFF
+
+    ENDIF
+
+Store current value
+
+End Repeat
+```
 ## Applications
+
 - Earthquake warning prototype
-- Vibration monitoring
-- Safety alarm system
+- Home safety alarm
 - Educational embedded systems project
+- Vibration monitoring
+- Industrial safety prototype
+
+---
+
+## Future Improvements
+
+- GSM module for SMS alerts
+- GPS location reporting
+- IoT cloud monitoring
+- Automatic gas supply shutoff
+- Automatic power cutoff
+- Mobile application support
+
+---
+
+## Technologies Used
+
+- Arduino IDE
+- Embedded C++
+- Arduino Uno
+- Analog Sensor Interface
+
+---
+
+## Results
+
+The prototype successfully detected continuous vibration using the tilt sensor. During testing, the buzzer was activated whenever the vibration exceeded the configured threshold and remained active until the movement stopped.
+
+---
+
+## Author
+
+Syeda Tajkia Zareen
+
+Bachelor Project
+Department of Electrical and Electronic Engineering
+University of Chittagong
